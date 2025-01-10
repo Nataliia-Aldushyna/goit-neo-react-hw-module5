@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import getApiOptions from "../../services/api.js";
 
-import usePagination from "../../hooks/usePagination.js";
+import usePagination from "../../services/pagination.js";
 
 import css from "./HomePage.module.css";
 
