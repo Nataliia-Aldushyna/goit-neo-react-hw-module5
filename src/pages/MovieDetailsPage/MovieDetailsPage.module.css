@@ -1,0 +1,53 @@
+.ttl {
+    font-size: 4rem;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .subTtl {
+    font-size: 2rem;
+  }
+  
+  .movieDetails {
+    display: grid;
+    grid-template-columns: 500px 1fr;
+    gap: 50px;
+    margin-bottom: 32px;
+  }
+  
+  .infoList {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  
+  .link {
+    text-align: center;
+    background-color: orangered;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    transition: 250ms;
+    width: 160px;
+  }
+  
+  .link:hover {
+    background-color: rgba(255, 69, 0, 0.8);
+  }
+  
+  @media screen and (max-width: 768px) {
+    .movieDetails {
+      grid-template-columns: 1fr;
+      gap: 20px;
+      justify-items: center;
+    }
+  }
+  
+  .addDetails {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+  }
+  
