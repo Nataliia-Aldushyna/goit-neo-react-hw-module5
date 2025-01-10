@@ -1,0 +1,10 @@
+.reviewItem {
+    background-color: #fffaf3;
+    border: 1px solid #f0a500;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
