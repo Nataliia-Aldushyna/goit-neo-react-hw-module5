@@ -1,9 +1,7 @@
 import axios from "axios";
 import { Suspense, useEffect, useRef, useState } from "react";
 import { Link, Outlet, useLocation, useParams } from "react-router-dom";
-import getApiOptions from "../../services/api.js";
 import css from "./MovieDetailsPage.module.css";
-import placeHolderImg from "../../assets/images/placeHolderImg.jpg";
 import { BackLink } from "../../components/BackLink/BackLink.jsx";
 
 const MovieDetailsPage = () => {
@@ -23,7 +21,11 @@ const MovieDetailsPage = () => {
     const fetchMovies = async () => {
       setLoading(true);
       try {
-        const response = await axios.get(url, getApiOptions);
+        const response = await axios.get(url, {
+          headers: {
+            Authorization: `Bearer ${import.meta.env.VITE_KEY}`,
+          },
+        });
         setMovie(response.data);
       } catch (error) {
         console.error(error);
@@ -67,11 +69,7 @@ const MovieDetailsPage = () => {
             />
             <img
               className={css.image}
-              src={
-                movie.poster_path
-                  ? `${imgBaseUrl}w500${movie.poster_path}`
-                  : placeHolderImg
-              }
+              src={movie.poster_path ? `${imgBaseUrl}w500${movie.poster_path}` : ''}
               alt={movie.title || "Movie Poster"}
             />
           </picture>

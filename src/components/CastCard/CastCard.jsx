@@ -1,5 +1,4 @@
 import css from './CastCard.module.css';
-import placeHolderImg from '../../assets/images/placeHolderImg.jpg';
 
 const CastCard = ({ cast }) => {
   const imgBaseUrl = 'https://image.tmdb.org/t/p/w185';
@@ -9,7 +8,7 @@ const CastCard = ({ cast }) => {
       <div className={css.imageWrapper}>
         <img
           className={css.image}
-          src={cast.profile_path ? `${imgBaseUrl}${cast.profile_path}` : placeHolderImg}
+          src={cast.profile_path ? `${imgBaseUrl}${cast.profile_path}` : ''}
           alt={cast.name || 'No image available'}
         />
       </div>

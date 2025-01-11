@@ -38,7 +38,7 @@
 
 .castList {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 5 акторів у рядку */
+  grid-template-columns: repeat(4, 1fr);
   gap: 20px;
   padding: 0;
   list-style: none;
@@ -70,12 +70,12 @@
 
 @media screen and (max-width: 768px) {
   .castList {
-    grid-template-columns: repeat(2, 1fr); /* 2 актори в рядку для мобільних */
+    grid-template-columns: repeat(2, 1fr); 
   }
 }
 
 @media screen and (max-width: 480px) {
   .castList {
-    grid-template-columns: 1fr; /* 1 актор у рядку для дуже малих екранів */
+    grid-template-columns: 1fr;
   }
 }

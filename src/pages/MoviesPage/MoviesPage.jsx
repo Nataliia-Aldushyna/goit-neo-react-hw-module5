@@ -1,9 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-
 import css from "./MoviesPage.module.css";
-
 import MovieList from "../../components/MovieList/MovieList.jsx";
 import Pagination from "../../components/Pagination/Pagination.jsx";
 import getApiOptions from "../../services/api.js";

@@ -1,5 +1,4 @@
 import css from "./MovieCard.module.css";
-import placeHolderImg from "../../assets/images/placeHolderImg.jpg";
 import { NavLink, useLocation } from "react-router-dom";
 
 const MovieCard = ({ movie }) => {
@@ -14,11 +13,7 @@ const MovieCard = ({ movie }) => {
     >
       <img
         className={css.image}
-        src={
-          movie.poster_path
-            ? `${imgBaseUrl}${movie.poster_path}`
-            : placeHolderImg
-        }
+        src={movie.poster_path ? `${imgBaseUrl}${movie.poster_path}` : ''}
         alt={movie.title || "Image not available"}
       />
       <h2 className={css.title}>{movie.title}</h2>

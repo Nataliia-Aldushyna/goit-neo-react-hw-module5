@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import getApiOptions from '../../services/api';
 
 import CastCard from "../CastCard/CastCard";
 import css from './MovieCast.module.css';
@@ -16,7 +15,11 @@ const MovieCast = () => {
     const fetchCast = async () => {
       try {
         const url = `https://api.themoviedb.org/3/movie/${movieId}/credits`;
-        const response = await axios.get(url, getApiOptions);
+        const response = await axios.get(url, {
+          headers: {
+            Authorization: `Bearer ${import.meta.env.VITE_KEY}`,
+          },
+        });
         const filteredCast = response.data.cast.filter(
           (cast) => cast.profile_path 
         );

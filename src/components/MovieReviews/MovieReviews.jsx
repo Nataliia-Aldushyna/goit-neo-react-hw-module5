@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import getApiOptions from '../../services/api';
 
 import ReviewCard from "../ReviewCard/ReviewCard";
 import css from './MovieReviews.module.css';
@@ -16,7 +15,11 @@ const MovieReviews = () => {
     const fetchReviews = async () => {
       try {
         const url = `https://api.themoviedb.org/3/movie/${movieId}/reviews`;
-        const response = await axios.get(url, getApiOptions);
+        const response = await axios.get(url, {
+          headers: {
+            Authorization: `Bearer ${import.meta.env.VITE_KEY}`,
+          },
+        });
         setReviews(response.data.results);
       } catch (err) {
         console.error("Error fetching reviews:", err);
