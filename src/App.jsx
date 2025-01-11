@@ -12,7 +12,7 @@ const MovieCast = lazy(() => import("./components/MovieCast/MovieCast.jsx"));
 const MovieReviews = lazy(() =>
   import("./components/MovieReviews/MovieReviews.jsx")
 );
-const NotFound = lazy(() => import("./pages/NotFound/NotFound.jsx"));
+const NotFound = lazy(() => import("./pages/NotFoundPage/NotFoundPage.jsx"));
 
 function App() {
   return (
