@@ -1,11 +1,43 @@
 @import "reset-css";
 @import "modern-normalize/modern-normalize.css";
 
+:root {
+  --primary-color: #4a90e2;
+  --secondary-color: #f5f5f5;
+  --accent-color: #ff5a5f;
+  --text-color: #333333;
+  --font-family: 'Inter', sans-serif;
+  --border-radius: 12px;
+  --box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family);
+  color: var(--text-color);
+  background-color: var(--secondary-color);
+  line-height: 1.6;
+}
+
 a {
-  text-decoration-line: none;
+  text-decoration: none;
   color: inherit;
 }
 
+a:hover {
+  color: var(--primary-color);
+}
+
+button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
 .container {
   padding: 20px;
   margin: 0 auto;

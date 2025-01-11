@@ -1,53 +1,123 @@
-.ttl {
-    font-size: 4rem;
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .subTtl {
-    font-size: 2rem;
-  }
-  
+.section {
+  background-color: #2c2f38;
+  color: #c8c8c8;
+  padding: 40px 20px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px 70px;
+  background-color: #1e2128;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}
+
+.title {
+  font-size: 2.6rem;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  color: #ffffff; 
+}
+
+.title::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 4px;
+  background-color: #ff5a5f;
+  margin: 20px auto 0;
+}
+
+.movieDetails {
+  display: flex;
+  flex-direction: row-reverse; 
+  gap: 60px;
+  align-items: flex-start;
+  margin-bottom: 40px;
+}
+
+.image {
+  flex: 1;
+  max-width: 400px;
+  width: 100%;
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+}
+
+.addDetails {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.subTitle {
+  font-size: 1.5rem;
+  color: var(--accent-color);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.infoList {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+  padding: 20px;
+}
+
+.infoItem {
+  list-style: none;
+}
+
+.link {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: var(--primary-color);
+  padding: 10px 20px;
+  color: white;
+  border-radius: var(--border-radius);
+  text-decoration: none;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  min-width: 150px;
+}
+
+.link:hover {
+  background-color: var(--accent-color);
+  color: white;
+  transform: scale(1.1);
+}
+
+@media screen and (max-width: 768px) {
   .movieDetails {
-    display: grid;
-    grid-template-columns: 500px 1fr;
-    gap: 50px;
-    margin-bottom: 32px;
-  }
-  
-  .infoList {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin-bottom: 16px;
-  }
-  
-  .link {
-    text-align: center;
-    background-color: orangered;
-    padding: 10px;
-    border: none;
-    border-radius: 8px;
-    color: white;
-    transition: 250ms;
-    width: 160px;
-  }
-  
-  .link:hover {
-    background-color: rgba(255, 69, 0, 0.8);
-  }
-  
-  @media screen and (max-width: 768px) {
-    .movieDetails {
-      grid-template-columns: 1fr;
-      gap: 20px;
-      justify-items: center;
-    }
-  }
-  
-  .addDetails {
-    display: flex;
     flex-direction: column;
-    gap: 50px;
+    align-items: center;
+    gap: 20px;
   }
-  
+
+  .image {
+    max-width: 300px;
+  }
+
+  .infoList {
+    flex-direction: column;
+    align-items: center;
+    /* gap: 12px; */
+  }
+
+  .link {
+    width: 100%;
+  }
+}

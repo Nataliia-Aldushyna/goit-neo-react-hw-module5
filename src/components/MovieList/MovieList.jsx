@@ -3,7 +3,7 @@ import css from './MovieList.module.css'
 
 const MovieList = ({ movies }) => {
     return (
-        <div className="container">
+        <div className={css.container}>
             <ul className={css.movieList}>
                 {movies.map(movie => (
                     <li key={movie.id} className={css.movieItem}>
@@ -12,6 +12,7 @@ const MovieList = ({ movies }) => {
                 ))}
             </ul>
         </div>
-    )
+    );
 };
+
 export default MovieList;

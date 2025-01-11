@@ -5,12 +5,13 @@ import { NavLink, useLocation } from "react-router-dom";
 const MovieCard = ({ movie }) => {
   const imgBaseUrl = "https://image.tmdb.org/t/p/w300";
   const location = useLocation();
+  
   return (
     <NavLink
       to={`/movies/${movie.id}`}
       state={{ from: location.pathname, search: location.search }}
+      className={css.movieCard} 
     >
-      <h2 className={css.title}>{movie.title} </h2>
       <img
         className={css.image}
         src={
@@ -20,6 +21,7 @@ const MovieCard = ({ movie }) => {
         }
         alt={movie.title || "Image not available"}
       />
+      <h2 className={css.title}>{movie.title}</h2>
     </NavLink>
   );
 };

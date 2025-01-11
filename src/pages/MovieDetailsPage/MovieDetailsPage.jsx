@@ -2,9 +2,7 @@ import axios from "axios";
 import { Suspense, useEffect, useRef, useState } from "react";
 import { Link, Outlet, useLocation, useParams } from "react-router-dom";
 import getApiOptions from "../../services/api.js";
-
 import css from "./MovieDetailsPage.module.css";
-
 import placeHolderImg from "../../assets/images/placeHolderImg.jpg";
 import { BackLink } from "../../components/BackLink/BackLink.jsx";
 
@@ -17,11 +15,10 @@ const MovieDetailsPage = () => {
   const location = useLocation();
   const backLinkHref = location.state?.from || "/movies";
   const backSearch = location.state?.search || "";
-  const fullBackLink = backSearch
-    ? `${backLinkHref}${backSearch}`
-    : backLinkHref;
+  const fullBackLink = backSearch ? `${backLinkHref}${backSearch}` : backLinkHref;
   const castRef = useRef(null);
   const reviewsRef = useRef(null);
+
   useEffect(() => {
     const fetchMovies = async () => {
       setLoading(true);
@@ -34,7 +31,6 @@ const MovieDetailsPage = () => {
         setLoading(false);
       }
     };
-
     fetchMovies();
   }, [url]);
 
@@ -45,6 +41,7 @@ const MovieDetailsPage = () => {
       }, 250);
     }
   };
+
   if (loading) {
     return <div>Loading movie details...</div>;
   }
@@ -54,10 +51,10 @@ const MovieDetailsPage = () => {
   }
 
   return (
-    <section className="section">
-      <div className="container">
-        <h1 className={css.ttl}>{movie.title}</h1>
-        <BackLink to={fullBackLink}>Back to movies</BackLink>
+    <section className={css.section}>
+      <div className={css.container}>
+        <h1 className={css.title}>{movie.title}</h1>
+        <BackLink to={fullBackLink}>Go back</BackLink>
         <div className={css.movieDetails}>
           <picture>
             <source
@@ -80,11 +77,11 @@ const MovieDetailsPage = () => {
           </picture>
           <div className={css.addDetails}>
             <div>
-              <h2 className={css.subTtl}>Description</h2>
+              <h2 className={css.subTitle}>Description</h2>
               <p>{movie.overview}</p>
             </div>
             <div>
-              <h2 className={css.subTtl}>Genres</h2>
+              <h2 className={css.subTitle}>Genres</h2>
               <p>
                 {movie.genres && movie.genres.length > 0
                   ? movie.genres.map((genre) => genre.name).join(", ")
@@ -92,11 +89,11 @@ const MovieDetailsPage = () => {
               </p>
             </div>
             <div>
-              <h2 className={css.subTtl}>Popularity</h2>
+              <h2 className={css.subTitle}>Popularity</h2>
               <p>{movie.popularity}</p>
             </div>
             <div>
-              <h2 className={css.subTtl}>Rating</h2>
+              <h2 className={css.subTitle}>Rating</h2>
               <p>{movie.vote_average}</p>
             </div>
           </div>

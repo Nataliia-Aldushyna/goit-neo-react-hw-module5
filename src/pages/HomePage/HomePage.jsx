@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import getApiOptions from "../../services/api.js";
 
-import usePagination from "../../services/pagination.js";
+import usePagination from "../../hooks/usePagination.js";
 
 import css from "./HomePage.module.css";
 
@@ -37,8 +37,8 @@ const HomePage = () => {
   }, [curPage]);
 
   return (
-    <section className="section">
-      <h1 className={css.homeTitle}>Trending Movies</h1>
+    <section className={css.homeSection}>
+      <h1 className={css.homeTitle}>Trending Today</h1>
       <MovieList movies={movies} />
       <Pagination
         curPage={curPage}

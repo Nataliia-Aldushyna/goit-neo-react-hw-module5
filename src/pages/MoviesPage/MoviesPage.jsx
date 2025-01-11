@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useLocation, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 import css from "./MoviesPage.module.css";
 
@@ -11,12 +11,11 @@ import getApiOptions from "../../services/api.js";
 const MoviesPage = () => {
   const [movies, setMovies] = useState([]);
   const [ttlPages, setTtlPage] = useState(0);
+  const [query, setQuery] = useState("");  
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const [searchParams, setSearchParams] = useSearchParams();
-  const location = useLocation();
-  console.log(location);
-  
-  const query = searchParams.get("query") || "";
+
   const curPage = parseInt(searchParams.get("page")) || 1;
 
   const url = `https://api.themoviedb.org/3/search/movie?language=en-US&query=${query}&page=${curPage}`;
@@ -26,10 +25,16 @@ const MoviesPage = () => {
       if (!query) return;
       try {
         const response = await axios.get(url, getApiOptions);
-        setMovies(response.data.results);
-        setTtlPage(response.data.total_pages);
+        if (response.data.results.length === 0) {
+          setErrorMessage("No movies found for your search.");
+        } else {
+          setMovies(response.data.results);
+          setTtlPage(response.data.total_pages);
+          setErrorMessage(null);
+        }
       } catch (err) {
         console.log(err);
+        setErrorMessage("An error occurred while fetching movies.");
       }
     };
     fetchMovies();
@@ -37,10 +42,16 @@ const MoviesPage = () => {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    const form = e.target;
-    const searchQuery = form.elements.movieSearch.value.trim();
-    
+    const searchQuery = query.trim();
+
+    if (searchQuery === "" || !/[a-zA-Z0-9]/.test(searchQuery)) {
+      setErrorMessage("Please enter a valid search query.");
+      return;
+    }
+
     setSearchParams({ query: searchQuery, page: 1 });
+    setQuery("");  
+    setErrorMessage(null);
   };
 
   const handleNextPage = () => {
@@ -52,15 +63,15 @@ const MoviesPage = () => {
   };
 
   return (
-    <section className="section">
-      <h1 className={css.homeTitle}>Search Movies</h1>
+    <section className={css.section}>
       <form onSubmit={handleSearch} className={css.formContainer}>
         <label htmlFor="movieSearch"></label>
         <input
           type="text"
           id="movieSearch"
           name="movieSearch"
-          defaultValue={query} 
+          value={query}  
+          onChange={(e) => setQuery(e.target.value)}  
           placeholder="Search for a movie..."
           className={css.input}
         />
@@ -68,6 +79,8 @@ const MoviesPage = () => {
           Search
         </button>
       </form>
+
+      {errorMessage && <p className={css.errorMessage}>{errorMessage}</p>}
 
       <MovieList movies={movies} />
       {movies.length !== 0 && (

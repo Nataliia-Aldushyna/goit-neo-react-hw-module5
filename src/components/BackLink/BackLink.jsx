@@ -5,8 +5,8 @@ import css from "./BackLink.module.css";
 export const BackLink = ({ to, children }) => {
   return (
     <Link to={to} className={css.link}>
-      <HiArrowLeft size="24" />
-      {children}
+      <HiArrowLeft className={css.icon} />
+      <span>{children}</span>
     </Link>
   );
 };
