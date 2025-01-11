@@ -4,7 +4,6 @@ import { useSearchParams } from "react-router-dom";
 import css from "./MoviesPage.module.css";
 import MovieList from "../../components/MovieList/MovieList.jsx";
 import Pagination from "../../components/Pagination/Pagination.jsx";
-import getApiOptions from "../../services/api.js";
 
 const MoviesPage = () => {
   const [movies, setMovies] = useState([]);
@@ -26,7 +25,12 @@ const MoviesPage = () => {
       setIsLoading(true); 
 
       try {
-        const response = await axios.get(url, getApiOptions);
+        const response = await axios.get(url, {
+          headers: {
+            Authorization: `Bearer ${import.meta.env.VITE_KEY}`,
+          },
+        });
+
         if (response.data.results.length === 0) {
           setErrorMessage("No movies found for your search.");
         } else {
@@ -69,7 +73,6 @@ const MoviesPage = () => {
 
   return (
     <section className={css.section}>
-      {}
       <form onSubmit={handleSearch} className={css.formContainer}>
         <label htmlFor="movieSearch"></label>
         <input
@@ -88,7 +91,7 @@ const MoviesPage = () => {
 
       {errorMessage && <p className={css.errorMessage}>{errorMessage}</p>}
       
-      {isLoading && <p className={css.loadingMessage}>Loading movies...</p>} {}
+      {isLoading && <p className={css.loadingMessage}>Loading movies...</p>}
 
       <MovieList movies={movies} />
       {movies.length !== 0 && (
