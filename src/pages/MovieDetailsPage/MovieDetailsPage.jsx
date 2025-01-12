@@ -12,7 +12,7 @@ const MovieDetailsPage = () => {
   const imgBaseUrl = "https://image.tmdb.org/t/p/";
   const location = useLocation();
 
-  const backLinkHref = useRef(location.state?.from || "/movies");
+  const backLinkHref = useRef(location.state || "/movies");
   const castRef = useRef(null);
   const reviewsRef = useRef(null);
 

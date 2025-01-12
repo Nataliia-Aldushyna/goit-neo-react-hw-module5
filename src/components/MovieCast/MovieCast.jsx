@@ -20,10 +20,7 @@ const MovieCast = () => {
             Authorization: `Bearer ${import.meta.env.VITE_KEY}`,
           },
         });
-        const filteredCast = response.data.cast.filter(
-          (cast) => cast.profile_path 
-        );
-        setCast(filteredCast);
+        setCast(response.data.cast || []);
       } catch (err) {
         console.error("Error fetching cast data:", err);
       }
