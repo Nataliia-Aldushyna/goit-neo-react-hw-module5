@@ -11,9 +11,9 @@ const MovieDetailsPage = () => {
   const url = `https://api.themoviedb.org/3/movie/${movieId}`;
   const imgBaseUrl = "https://image.tmdb.org/t/p/";
   const location = useLocation();
-  const backLinkHref = location.state?.from || "/movies";
-  const backSearch = location.state?.search || "";
-  const fullBackLink = backSearch ? `${backLinkHref}${backSearch}` : backLinkHref;
+  const backLinkHref = location.state?.from || "/movies"; 
+  const backSearch = location.state?.search || ""; 
+  const fullBackLink = backSearch ? `${backLinkHref}${backSearch}` : backLinkHref; 
   const castRef = useRef(null);
   const reviewsRef = useRef(null);
 
@@ -56,6 +56,7 @@ const MovieDetailsPage = () => {
     <section className={css.section}>
       <div className={css.container}>
         <h1 className={css.title}>{movie.title}</h1>
+        {}
         <BackLink to={fullBackLink}>Go back</BackLink>
         <div className={css.movieDetails}>
           <picture>
@@ -100,17 +101,17 @@ const MovieDetailsPage = () => {
           <li className={css.infoItem} ref={castRef}>
             <Link
               to="cast"
-              state={{ from: fullBackLink }}
+              state={{ from: fullBackLink }} 
               className={css.link}
               onClick={() => scrollToSection(castRef)}
             >
-              Actors
+              Cast
             </Link>
           </li>
           <li className={css.infoItem} ref={reviewsRef}>
             <Link
               to="reviews"
-              state={{ from: fullBackLink }}
+              state={{ from: fullBackLink }} 
               className={css.link}
               onClick={() => scrollToSection(reviewsRef)}
             >

@@ -35,7 +35,7 @@ const MovieCast = () => {
   return (
     <section className={css.section}>
       <div className={css.container}>
-        <h2 className={css.title}>Actors</h2>
+        <h2 className={css.title}>Cast</h2>
         <ul className={css.castList}>
           {casts.length > 0 ? (
             casts.map((cast) => (

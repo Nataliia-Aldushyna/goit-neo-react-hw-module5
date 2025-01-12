@@ -8,13 +8,12 @@ import Pagination from "../../components/Pagination/Pagination.jsx";
 const MoviesPage = () => {
   const [movies, setMovies] = useState([]);
   const [ttlPages, setTtlPage] = useState(0);
-  const [query, setQuery] = useState("");  
   const [errorMessage, setErrorMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
   const [searchParams, setSearchParams] = useSearchParams();
-
-  const curPage = parseInt(searchParams.get("page")) || 1;
+  const query = searchParams.get("query") || ""; 
+  const curPage = parseInt(searchParams.get("page")) || 1; 
 
   const url = `https://api.themoviedb.org/3/search/movie?language=en-US&query=${query}&page=${curPage}`;
 
@@ -22,7 +21,7 @@ const MoviesPage = () => {
     const fetchMovies = async () => {
       if (!query) return;
 
-      setIsLoading(true); 
+      setIsLoading(true);
 
       try {
         const response = await axios.get(url, {
@@ -42,7 +41,7 @@ const MoviesPage = () => {
         console.log(err);
         setErrorMessage("An error occurred while fetching movies.");
       } finally {
-        setIsLoading(false); 
+        setIsLoading(false);
       }
     };
 
@@ -58,17 +57,16 @@ const MoviesPage = () => {
       return;
     }
 
-    setSearchParams({ query: searchQuery, page: 1 });
-    setQuery("");  
+    setSearchParams({ query: searchQuery, page: 1 }); 
     setErrorMessage(null);
   };
 
   const handleNextPage = () => {
-    setSearchParams({ query, page: curPage + 1 });
+    setSearchParams({ query, page: curPage + 1 }); 
   };
 
   const handlePrevPage = () => {
-    setSearchParams({ query, page: curPage - 1 });
+    setSearchParams({ query, page: curPage - 1 }); 
   };
 
   return (
@@ -80,7 +78,7 @@ const MoviesPage = () => {
           id="movieSearch"
           name="movieSearch"
           value={query}
-          onChange={(e) => setQuery(e.target.value)}
+          onChange={(e) => setSearchParams({ query: e.target.value, page: 1 })}
           placeholder="Search for a movie..."
           className={css.input}
         />
